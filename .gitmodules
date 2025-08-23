@@ -1,0 +1,12 @@
+[submodule "app"]
+	path = app
+	url = https://github.com/100days-fit/app
+	branch = main
+[submodule "website"]
+	path = website
+	url = https://github.com/100days-fit/website
+	branch = main
+[submodule "api-gateway"]
+	path = api-gateway
+	url = https://github.com/100days-fit/api-gateway
+	branch = main
