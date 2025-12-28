@@ -10,3 +10,6 @@
 	path = api-gateway
 	url = https://github.com/100days-fit/api-gateway
 	branch = main
+[submodule "auth-service"]
+	path = auth-service
+	url = https://github.com/100days-fit/auth-service.git
