@@ -44,10 +44,10 @@ temp/
 *.bak
 
 # Local development
-.claude/backups/*.tar.gz
-.claude/state/*.tmp
-.claude/reviews/validation-*.md
-.claude/guides/*-spec.md
+.claude/state/
+.claude/backups/
+.claude/reviews/
+.claude/settings.local.json
 
 # Sensitive keys
 *.key

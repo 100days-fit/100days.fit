@@ -2,6 +2,26 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 🚨 SUPREME AUTHORITY NOTICE
+
+**This CLAUDE.md file is the CONSTITUTION of this repository.**
+- Every instruction here is MANDATORY, not advisory
+- These patterns override ALL other considerations
+- When in doubt, follow CLAUDE.md exactly as written
+- See `@GUARDRAILS.md` for enforcement rules
+
+**Before taking ANY action, check if CLAUDE.md addresses it. If it does, follow it exactly.**
+
+## ✅ Pre-Action Validation Checklist
+
+Before ANY action, Claude MUST verify:
+1. **Does CLAUDE.md mention this?** → If yes, follow exactly
+2. **Am I creating an alternative to a documented tool?** → If yes, STOP
+3. **Am I suggesting a "simpler" way than documented?** → If yes, STOP
+4. **Does my action contradict any section of CLAUDE.md?** → If yes, STOP
+
+**If any answer is YES to questions 2-4, ask the user for clarification instead.**
+
 ## ⚠️ CRITICAL: Repository Structure & Navigation Rules
 
 ### This is a MONOREPO with GIT SUBMODULES
@@ -48,6 +68,107 @@ pwd  # Verify you're in: .../100days.fit/api-gateway
 # Run submodule-specific commands here
 ```
 
+## 🛡️ PRODUCTION SAFETY SYSTEMS (NEW)
+
+### Critical Safety Features for Solo Developer
+
+#### 1. **Git Worktrees for Parallel Sessions** 🌳
+Run multiple Claude sessions without conflicts:
+```bash
+# Each session gets its own isolated worktree
+cd /Users/shreeshkatyayan/Repositories/100days.fit
+node .claude/scripts/worktree.js create feature-name
+
+# List all active worktrees
+node .claude/scripts/worktree.js list
+```
+**Benefits**: Work on multiple features simultaneously, main repo stays clean, no merge conflicts between sessions.
+
+#### 2. **Automatic Backup Protection** 🛡️
+Prevents catastrophic data loss (like the YAML deletion incident):
+```bash
+# Create backup before destructive operations
+node .claude/scripts/backup.js file1.txt file2.txt
+
+# List available backups
+node .claude/scripts/backup.js --list
+
+# Restore from backup
+node .claude/scripts/backup.js --restore <backup-id>
+```
+
+#### 3. **Dry-Run Mode** 🔍
+Preview changes without executing:
+```bash
+# Enable dry-run to see what WOULD happen
+--dry-run flag on any operation
+# Review preview, then execute if safe
+```
+
+#### 4. **Simple Undo Stack** ↩️
+Last 10 operations are reversible:
+```bash
+# Record an operation for undo
+node .claude/scripts/undo.js --record "operation-type" "details"
+
+# Undo last operation
+node .claude/scripts/undo.js --last
+
+# Undo specific operation
+node .claude/scripts/undo.js --id <operation-id>
+
+# List undo history
+node .claude/scripts/undo.js --list
+```
+
+#### 5. **Main Branch Protection** 🚨
+**CRITICAL**: Direct commits to main/master are BLOCKED
+```bash
+# This check runs automatically before every commit
+# Forces you to use feature branches
+# Prevents accidental production changes
+```
+
+### How Safety Systems Work Together
+
+1. **Starting New Work**: Worktree manager creates isolated workspace
+2. **Before Risky Operations**: Backup manager saves current state
+3. **Testing Changes**: Dry-run shows preview without execution
+4. **If Something Goes Wrong**: Undo stack or backup restore
+5. **Committing**: Branch protection ensures safe practices
+
+### Emergency Recovery Commands
+
+```bash
+# If you deleted something important
+node .claude/scripts/backup.js --list
+node .claude/scripts/backup.js --restore <backup-id>
+
+# If you need to undo last action
+node .claude/scripts/undo.js --last
+
+# If you're in wrong worktree
+node .claude/scripts/worktree.js list
+cd /path/to/correct/worktree
+```
+
+## 🤖 Claude Code Agent System
+
+**IMPORTANT**: This project uses a specialized 10-agent system for development. See **@AGENTS.md** for complete documentation.
+
+### Quick Agent Reference
+- **Start new features**: Use `@product-strategy` 
+- **Design work**: Use `@ux-design`
+- **Development**: Use `@hasura-engineer`, `@mobile-developer`, `@web-developer`
+- **Infrastructure**: Use `@devops-engineer`
+- **Quality**: Automatic via `@validation-monitor`, `@code-quality`, `@test-automation`
+- **Git operations**: ALWAYS use `@git-workflow`
+
+For detailed workflows and examples, refer to:
+- `@AGENTS.md` - Complete agent documentation
+- `@.claude/docs/QUICK-START.md` - Quick reference guide
+- `@.claude/docs/SOLO-DEVELOPER-GUIDE.md` - Practical workflows
+
 ## Project Overview
 
 100days.fit is a fitness habit transformation platform with three main applications working together to deliver a comprehensive 100-day journey tracking experience.
@@ -55,19 +176,19 @@ pwd  # Verify you're in: .../100days.fit/api-gateway
 ### Architecture Overview
 ```
 ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Mobile App  │────▶│    Hasura    │────▶│  PostgreSQL  │
-│    (Expo)    │     │   GraphQL    │     │   Database   │
-└──────────────┘     └──────────────┘     └──────────────┘
-                            │
+│  Mobile App  │────▶│    Hasura    │────▶│   NeonDB     │
+│    (Expo)    │     │   GraphQL    │     │  PostgreSQL  │
+└──────────────┘     │  (Railway)   │     │(Scale-to-zero)│
+                     └──────────────┘     └──────────────┘
 ┌──────────────┐            │
 │   Website    │────────────┤
 │  (Next.js)   │            │
-└──────────────┘            ▼
-                    ┌──────────────┐
-                    │ AWS Lambda   │
-                    │  Functions   │
-                    │  (Actions)   │
-                    └──────────────┘
+│   (Vercel)   │            ▼
+└──────────────┘     ┌──────────────┐
+                     │  Cloudflare  │
+                     │   Workers    │
+                     │  (Actions)   │
+                     └──────────────┘
 ```
 
 ## Submodule Documentation
@@ -78,8 +199,9 @@ Each submodule has its own CLAUDE.md with specific guidance:
 @api-gateway/CLAUDE.md
 - Hasura GraphQL configuration and commands
 - Database migrations and schema management
-- AWS Lambda functions for business logic
+- Cloudflare Workers for business logic (Actions)
 - Docker compose setup for local development
+- Railway deployment for production
 
 ### Mobile App
 @app/CLAUDE.md
@@ -94,6 +216,14 @@ Each submodule has its own CLAUDE.md with specific guidance:
 - DaisyUI component library usage
 - Firebase authentication integration
 - Sentry monitoring setup
+
+### Integrations Service (Future Submodule)
+@integrations/CLAUDE.md (to be created)
+- Fastify-based microservice for fitness platform integrations
+- OAuth flows for Garmin, Strava, Apple Health
+- Token vault with AES-256-GCM encryption
+- Webhook handling and data aggregation
+- See decisions 008-009 for architecture details
 
 ## Git Submodule Best Practices
 
@@ -130,6 +260,12 @@ git commit -m "Update api-gateway submodule"
 4. **Always verify your working directory with `pwd`**
 
 ## Backlog Management Rules
+
+### 🔴 ABSOLUTE RULE: Task Management
+**The backlog CLI is the ONLY task management system for this project.**
+- **NEVER create**: TODO.md, TASKS.md, or any markdown task files
+- **NEVER suggest**: Alternative task tracking methods  
+- **ALWAYS use**: `backlog task` commands as documented below
 
 ### 🚨 LESSONS LEARNED FROM COMMON MISTAKES
 
