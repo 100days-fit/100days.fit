@@ -1,9 +1,10 @@
 ---
 id: task-002.09
 title: Implement Hasura Custom Claims Management
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-12-28 08:33'
+updated_date: '2025-12-28 15:08'
 labels: []
 dependencies:
   - task-002.08
@@ -24,3 +25,7 @@ Create setHasuraClaims helper function to set x-hasura-allowed-roles, x-hasura-d
 - [ ] #5 Token refresh forced on role change
 - [ ] #6 Unit tests written
 <!-- AC:END -->
+
+## Implementation Notes
+
+Custom claims management implemented with buildHasuraClaims and refreshClaims callable function

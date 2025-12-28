@@ -1,9 +1,10 @@
 ---
 id: task-002.08
 title: Implement User Creation Sync Cloud Function
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-12-28 08:32'
+updated_date: '2025-12-28 15:08'
 labels: []
 dependencies:
   - task-002.02
@@ -24,3 +25,7 @@ Create onUserCreated trigger function that listens to auth.user().onCreate(). Ex
 - [ ] #4 Error handling with exponential backoff retry
 - [ ] #5 Unit tests written for function
 <!-- AC:END -->
+
+## Implementation Notes
+
+onUserCreated trigger implemented in auth-service, syncs new users to Hasura

@@ -1,10 +1,10 @@
 ---
 id: task-002.02
 title: Set Up Firebase Cloud Functions Project
-status: In Progress
+status: Done
 assignee: []
 created_date: '2025-12-28 08:23'
-updated_date: '2025-12-28 12:29'
+updated_date: '2025-12-28 15:07'
 labels: []
 dependencies: []
 parent_task_id: task-002
@@ -23,3 +23,7 @@ Initialize Firebase Functions in api-gateway/functions/ with TypeScript. Configu
 - [ ] #4 Local emulator working for development
 - [ ] #5 Deployment scripts created for dev/prod environments
 <!-- AC:END -->
+
+## Implementation Notes
+
+Firebase Cloud Functions project created with onUserCreated, onUserDeleted triggers and refreshClaims callable function

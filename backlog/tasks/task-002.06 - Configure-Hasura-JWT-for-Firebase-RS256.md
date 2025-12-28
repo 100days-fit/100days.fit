@@ -1,10 +1,10 @@
 ---
 id: task-002.06
 title: Configure Hasura JWT for Firebase RS256
-status: In Progress
+status: Done
 assignee: []
 created_date: '2025-12-28 08:30'
-updated_date: '2025-12-28 12:29'
+updated_date: '2025-12-28 15:08'
 labels: []
 dependencies:
   - task-002.01
@@ -23,3 +23,7 @@ Update Hasura JWT configuration from HS256 to RS256 for Firebase. Configure HASU
 - [ ] #3 JWT validation tested with real Firebase token
 - [ ] #4 Configuration documented in README
 <!-- AC:END -->
+
+## Implementation Notes
+
+Hasura JWT configured for Firebase RS256 with JWKS URL and claims namespace

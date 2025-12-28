@@ -1,10 +1,10 @@
 ---
 id: task-002.05
 title: Create Database Migration for Auth Tables
-status: In Progress
+status: Done
 assignee: []
 created_date: '2025-12-28 08:27'
-updated_date: '2025-12-28 12:29'
+updated_date: '2025-12-28 15:08'
 labels: []
 dependencies: []
 parent_task_id: task-002
@@ -25,3 +25,7 @@ Create Hasura migration for: 1) users table enhancements (avatar_url, phone_numb
 - [ ] #6 Proper indexes added for performance
 - [ ] #7 Migration tested up/down locally
 <!-- AC:END -->
+
+## Implementation Notes
+
+Auth enhancements migration created with user_sessions and auth_events tables

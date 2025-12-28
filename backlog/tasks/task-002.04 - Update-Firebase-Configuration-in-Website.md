@@ -1,10 +1,10 @@
 ---
 id: task-002.04
 title: Update Firebase Configuration in Website
-status: In Progress
+status: Done
 assignee: []
 created_date: '2025-12-28 08:25'
-updated_date: '2025-12-28 12:29'
+updated_date: '2025-12-28 15:08'
 labels: []
 dependencies:
   - task-002.01
@@ -23,3 +23,7 @@ Update existing firebase.config.ts, create .env.example, set up Firebase Admin S
 - [ ] #3 Firebase Admin SDK configured in lib/firebase-admin.ts
 - [ ] #4 Server-side session management enabled
 <!-- AC:END -->
+
+## Implementation Notes
+
+Firebase configuration updated in website with Google/Apple sign-in and Firebase Admin SDK
